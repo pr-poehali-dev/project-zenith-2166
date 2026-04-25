@@ -30,7 +30,7 @@ const Index = () => {
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/a26acde0-562c-4a34-9695-6cd2a9bc4bac.jpg",
       name: "Ирис в ассортименте",
-      price: "160 ₽",
+      price: "от 450 ₽",
     },
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/03457518-a10c-4610-bd39-5f7d2fa6eb62.jpg",
