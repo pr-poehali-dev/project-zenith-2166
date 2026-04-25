@@ -33,7 +33,7 @@ const Index = () => {
       price: "от 450 ₽",
     },
     {
-      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/03457518-a10c-4610-bd39-5f7d2fa6eb62.jpg",
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/6e3316d8-62ce-405f-84f2-318b8ab7da3c.jpg",
       name: "Белый шоколад",
       price: "390 ₽",
     },
