@@ -20,7 +20,7 @@ const Index = () => {
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/8760bfb2-f550-449c-8a2b-9ce9ea165654.jpg",
       name: "Карамель",
-      price: "220 ₽",
+      price: "от 350 ₽",
     },
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/7cbd3041-ac73-4e58-b587-f2d6a6a9e82a.jpg",
