@@ -25,7 +25,7 @@ const Index = () => {
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/7cbd3041-ac73-4e58-b587-f2d6a6a9e82a.jpg",
       name: "Леденцы на палочке",
-      price: "90 ₽",
+      price: "20–80 ₽",
     },
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/a26acde0-562c-4a34-9695-6cd2a9bc4bac.jpg",
