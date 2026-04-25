@@ -5,7 +5,7 @@ const Index = () => {
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/a0e894a9-f23c-4d07-b3c8-d79334c480f2.jpg",
       name: "Ассорти в коробке",
-      price: "690 ₽",
+      price: "от 400 ₽",
     },
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/b5dbca3c-4fd1-4c2a-809d-2334c9aecda5.jpg",
