@@ -15,7 +15,7 @@ const Index = () => {
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/1f1975fd-8844-4e15-895b-3827768cc6f8.jpg",
       name: "Шоколадные трюфели",
-      price: "450 ₽",
+      price: "от 600 ₽",
     },
     {
       image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/8760bfb2-f550-449c-8a2b-9ce9ea165654.jpg",
