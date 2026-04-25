@@ -4,6 +4,7 @@ import Icon from "@/components/ui/icon";
 
 const API = "https://functions.poehali.dev/d0df612f-6731-48b7-a40d-dac46a740956";
 const UPLOAD_API = "https://functions.poehali.dev/f2d4ddc5-d5c2-45fe-bf24-d9521b40d135";
+const AUTH_API = "https://functions.poehali.dev/ab408a9c-da60-46eb-ada0-d7c44fff0ff1";
 
 type Item = {
   id?: number;
@@ -18,6 +19,7 @@ const empty: Item = { name: "", price: "", description: "", image_url: "" };
 const Catalog = () => {
   const navigate = useNavigate();
   const [items, setItems] = useState<Item[]>([]);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [editItem, setEditItem] = useState<Item | null>(null);
   const [form, setForm] = useState<Item>(empty);
@@ -31,7 +33,24 @@ const Catalog = () => {
     setItems(data);
   };
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    load();
+    const token = localStorage.getItem("admin_token");
+    if (token) {
+      fetch(AUTH_API, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "verify", token }),
+      })
+        .then(r => r.json())
+        .then(d => { if (d.ok) setIsAdmin(true); });
+    }
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem("admin_token");
+    setIsAdmin(false);
+  };
 
   const openAdd = () => {
     setEditItem(null);
@@ -94,32 +113,53 @@ const Catalog = () => {
   return (
     <main className="min-h-screen bg-background">
       <div className="max-w-2xl mx-auto px-4 py-10">
-        <button
-          onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
-        >
-          <Icon name="ArrowLeft" size={18} />
-          Назад
-        </button>
+        <div className="flex items-center justify-between mb-8">
+          <button
+            onClick={() => navigate("/")}
+            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Icon name="ArrowLeft" size={18} />
+            Назад
+          </button>
+          {isAdmin ? (
+            <button
+              onClick={logout}
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Icon name="LogOut" size={16} />
+              Выйти
+            </button>
+          ) : (
+            <button
+              onClick={() => navigate("/login")}
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Icon name="LogIn" size={16} />
+              Войти
+            </button>
+          )}
+        </div>
 
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-1">Каталог конфет</h1>
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-1">Сладкий мир</h1>
             <p className="text-muted-foreground">Сладости для любого возраста и повода</p>
           </div>
-          <button
-            onClick={openAdd}
-            className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-sm font-medium"
-          >
-            <Icon name="Plus" size={16} />
-            Добавить
-          </button>
+          {isAdmin && (
+            <button
+              onClick={openAdd}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-colors text-sm font-medium"
+            >
+              <Icon name="Plus" size={16} />
+              Добавить
+            </button>
+          )}
         </div>
 
         {items.length === 0 && (
           <div className="text-center py-16 text-muted-foreground">
             <Icon name="PackageOpen" size={48} />
-            <p className="mt-4">Каталог пуст — добавьте первую позицию!</p>
+            <p className="mt-4">Каталог пуст — скоро здесь появятся конфеты!</p>
           </div>
         )}
 
@@ -149,29 +189,31 @@ const Catalog = () => {
               </div>
               <div className="flex-shrink-0 text-right flex flex-col items-end gap-2">
                 <p className="text-base font-bold text-primary">{item.price}</p>
-                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button
-                    onClick={() => openEdit(item)}
-                    className="p-1.5 rounded-lg hover:bg-accent transition-colors"
-                    title="Редактировать"
-                  >
-                    <Icon name="Pencil" size={14} />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(item.id!)}
-                    className="p-1.5 rounded-lg hover:bg-destructive/10 text-destructive transition-colors"
-                    title="Удалить"
-                  >
-                    <Icon name="Trash2" size={14} />
-                  </button>
-                </div>
+                {isAdmin && (
+                  <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => openEdit(item)}
+                      className="p-1.5 rounded-lg hover:bg-accent transition-colors"
+                      title="Редактировать"
+                    >
+                      <Icon name="Pencil" size={14} />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id!)}
+                      className="p-1.5 rounded-lg hover:bg-destructive/10 text-destructive transition-colors"
+                      title="Удалить"
+                    >
+                      <Icon name="Trash2" size={14} />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {showForm && (
+      {showForm && isAdmin && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
           <div className="bg-card rounded-2xl shadow-2xl w-full max-w-md p-6">
             <h2 className="text-xl font-bold mb-4">
@@ -188,7 +230,6 @@ const Catalog = () => {
                   onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
                 />
               </div>
-
               <div>
                 <label className="text-sm font-medium text-muted-foreground mb-1 block">Цена *</label>
                 <input
@@ -198,7 +239,6 @@ const Catalog = () => {
                   onChange={e => setForm(f => ({ ...f, price: e.target.value }))}
                 />
               </div>
-
               <div>
                 <label className="text-sm font-medium text-muted-foreground mb-1 block">Описание</label>
                 <textarea
@@ -209,7 +249,6 @@ const Catalog = () => {
                   onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
                 />
               </div>
-
               <div>
                 <label className="text-sm font-medium text-muted-foreground mb-1 block">Фото</label>
                 <div className="flex items-center gap-3">

@@ -1,0 +1,11 @@
+{
+  "tests": [
+    {
+      "name": "Create admin",
+      "method": "POST",
+      "path": "/",
+      "body": {"phone": "+79892410602", "password": "2212"},
+      "expectedStatus": 200
+    }
+  ]
+}
