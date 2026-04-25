@@ -18,7 +18,7 @@ const Index = () => {
       price: "450 ₽",
     },
     {
-      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/b55a3255-4d66-482f-85d7-9329c5590537.jpg",
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/8760bfb2-f550-449c-8a2b-9ce9ea165654.jpg",
       name: "Зефир и маршмеллоу",
       price: "220 ₽",
     },
