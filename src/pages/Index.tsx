@@ -8,8 +8,8 @@ const Index = () => {
       price: "от 400 ₽",
     },
     {
-      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/d6dea8a6-c08d-4bcc-9380-d32537b25c62.jpg",
-      name: "Мармелад в обёртке",
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/373b68fa-3940-481f-bcee-2b66d2ae81fd.jpg",
+      name: "Мармелад Пчёлка",
       price: "от 450 ₽",
     },
     {
