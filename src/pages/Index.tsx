@@ -1,32 +1,56 @@
 import ArcGalleryHero from "@/components/ArcGalleryHero";
 
 const Index = () => {
-  const images = [
-    "/freepik__enhance__98192.png",
-    "/LS.png",
-    "/freepik__a-closeup-shot-features-a-glossy-purple-crossshape__48873.png",
-    "/freepik__the-style-is-3d-model-with-octane-render-volumetri__57555.png",
-    "/eqirGoRIJPaIMgEUeliWpNxeFmI.jpg",
-    "/ultra-detailed_close-up_side_profile_of_a_dark-skinned_model_wearing_futuristic_chrome_wraparound_s_ps17q5ms2ptu5t6bdru6_2.png",
-    "/slide.png",
-    "/freepik__abstract-digital-art-featuring-a-series-of-horizon__489.png",
-    "/abstract-blue-gradient.webp",
-    "/VkvvhXlWo3hEBzcqwTpjd_aa4bf9ee998f4ec0b17a8bf16fe3e9e2.jpg",
-    "/hyperrealistic_commercial_product_photography_of_luxury_chrome_sunglasses_on_male_model_extreme_chi_fanguv2w9zx489lcivwa_2.png",
+  const candies = [
+    {
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/a0e894a9-f23c-4d07-b3c8-d79334c480f2.jpg",
+      name: "Ассорти в коробке",
+      price: "690 ₽",
+    },
+    {
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/b5dbca3c-4fd1-4c2a-809d-2334c9aecda5.jpg",
+      name: "Мармеладные мишки",
+      price: "180 ₽",
+    },
+    {
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/1f1975fd-8844-4e15-895b-3827768cc6f8.jpg",
+      name: "Шоколадные трюфели",
+      price: "450 ₽",
+    },
+    {
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/b55a3255-4d66-482f-85d7-9329c5590537.jpg",
+      name: "Зефир и маршмеллоу",
+      price: "220 ₽",
+    },
+    {
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/7cbd3041-ac73-4e58-b587-f2d6a6a9e82a.jpg",
+      name: "Леденцы на палочке",
+      price: "90 ₽",
+    },
+    {
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/a26acde0-562c-4a34-9695-6cd2a9bc4bac.jpg",
+      name: "Карамель Toffee",
+      price: "160 ₽",
+    },
+    {
+      image: "https://cdn.poehali.dev/projects/297c7ebc-d318-4ea4-b992-6e3aa23bd6fd/files/03457518-a10c-4610-bd39-5f7d2fa6eb62.jpg",
+      name: "Белый шоколад",
+      price: "390 ₽",
+    },
   ];
 
   return (
     <main className="relative min-h-screen bg-background">
       <ArcGalleryHero
-        images={images}
+        items={candies}
         startAngle={20}
         endAngle={160}
-        radiusLg={480}
-        radiusMd={360}
-        radiusSm={260}
-        cardSizeLg={120}
-        cardSizeMd={100}
-        cardSizeSm={80}
+        radiusLg={500}
+        radiusMd={380}
+        radiusSm={270}
+        cardSizeLg={140}
+        cardSizeMd={110}
+        cardSizeSm={85}
         className="pt-16 pb-16 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24"
       />
     </main>

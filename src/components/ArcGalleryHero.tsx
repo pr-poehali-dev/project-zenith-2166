@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 
+type CandyItem = {
+  image: string;
+  name: string;
+  price: string;
+};
+
 type ArcGalleryHeroProps = {
-  images: string[];
+  items: CandyItem[];
   startAngle?: number;
   endAngle?: number;
   radiusLg?: number;
@@ -14,15 +20,15 @@ type ArcGalleryHeroProps = {
 };
 
 const ArcGalleryHero = ({
-  images,
+  items,
   startAngle = -110,
   endAngle = 110,
   radiusLg = 340,
   radiusMd = 280,
   radiusSm = 200,
-  cardSizeLg = 120,
-  cardSizeMd = 100,
-  cardSizeSm = 80,
+  cardSizeLg = 140,
+  cardSizeMd = 110,
+  cardSizeSm = 85,
   className = '',
 }: ArcGalleryHeroProps) => {
   const [dimensions, setDimensions] = useState({
@@ -47,7 +53,7 @@ const ArcGalleryHero = ({
     return () => window.removeEventListener('resize', handleResize);
   }, [radiusLg, radiusMd, radiusSm, cardSizeLg, cardSizeMd, cardSizeSm]);
 
-  const count = Math.max(images.length, 2);
+  const count = Math.max(items.length, 2);
   const step = (endAngle - startAngle) / (count - 1);
 
   return (
@@ -60,7 +66,7 @@ const ArcGalleryHero = ({
         }}
       >
         <div className="absolute left-1/2 bottom-0 -translate-x-1/2">
-          {images.map((src, i) => {
+          {items.map((item, i) => {
             const angle = startAngle + step * i;
             const angleRad = (angle * Math.PI) / 180;
             const x = Math.cos(angleRad) * dimensions.radius;
@@ -72,7 +78,6 @@ const ArcGalleryHero = ({
                 className="absolute opacity-0 animate-fade-in-up"
                 style={{
                   width: dimensions.cardSize,
-                  height: dimensions.cardSize,
                   left: `calc(50% + ${x}px)`,
                   bottom: `${y}px`,
                   transform: `translate(-50%, 50%)`,
@@ -82,15 +87,24 @@ const ArcGalleryHero = ({
                 }}
               >
                 <div
-                  className="rounded-2xl shadow-xl overflow-hidden ring-1 ring-border bg-card transition-transform hover:scale-105 w-full h-full"
+                  className="rounded-2xl shadow-xl overflow-hidden ring-1 ring-border bg-card transition-transform hover:scale-105 w-full group cursor-pointer"
                   style={{ transform: `rotate(${angle / 4}deg)` }}
                 >
-                  <img
-                    src={src}
-                    alt=""
-                    className="block w-full h-full object-cover"
-                    draggable={false}
-                  />
+                  <div
+                    style={{ width: dimensions.cardSize, height: dimensions.cardSize }}
+                    className="overflow-hidden"
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="block w-full h-full object-cover"
+                      draggable={false}
+                    />
+                  </div>
+                  <div className="bg-card px-2 py-1.5 text-center">
+                    <p className="text-[10px] sm:text-xs font-medium text-foreground truncate leading-tight">{item.name}</p>
+                    <p className="text-[11px] sm:text-sm font-bold text-primary leading-tight">{item.price}</p>
+                  </div>
                 </div>
               </div>
             );
@@ -101,17 +115,17 @@ const ArcGalleryHero = ({
       <div className="relative z-10 flex-1 flex items-center justify-center px-6 -mt-40 md:-mt-52 lg:-mt-64">
         <div className="text-center max-w-2xl px-6 opacity-0 animate-fade-in" style={{ animationDelay: '800ms', animationFillMode: 'forwards' }}>
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-            Визуальная галерея для вашего проекта
+            Сладкий мир конфет
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">
-            Создавайте впечатляющие презентации изображений за считанные минуты.
+            Лучшие конфеты для любого возраста — от нежных трюфелей до ярких мармеладок.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-              Начать создавать
+            <button className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium">
+              Выбрать конфеты
             </button>
             <button className="w-full sm:w-auto px-6 py-3 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-all duration-200">
-              Узнать больше
+              Весь каталог
             </button>
           </div>
         </div>
