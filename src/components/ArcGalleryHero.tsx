@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type CandyItem = {
   image: string;
@@ -53,6 +54,7 @@ const ArcGalleryHero = ({
     return () => window.removeEventListener('resize', handleResize);
   }, [radiusLg, radiusMd, radiusSm, cardSizeLg, cardSizeMd, cardSizeSm]);
 
+  const navigate = useNavigate();
   const count = Math.max(items.length, 2);
   const step = (endAngle - startAngle) / (count - 1);
 
@@ -121,10 +123,16 @@ const ArcGalleryHero = ({
             Лучшие конфеты для любого возраста — от нежных трюфелей до ярких мармеладок.
           </p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium">
+            <button
+              onClick={() => navigate('/catalog')}
+              className="w-full sm:w-auto px-6 py-3 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 font-medium"
+            >
               Выбрать конфеты
             </button>
-            <button className="w-full sm:w-auto px-6 py-3 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-all duration-200">
+            <button
+              onClick={() => navigate('/catalog')}
+              className="w-full sm:w-auto px-6 py-3 rounded-full border border-border hover:bg-accent hover:text-accent-foreground transition-all duration-200"
+            >
               Весь каталог
             </button>
           </div>
